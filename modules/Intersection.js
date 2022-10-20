@@ -1,37 +1,34 @@
 export class Intersection {
+    x = 0;
+    y = 0;
+    roads = [null, null, null, null]; //index 0 = up, index 1 = right, ...
+
+    constructor(x, y, color = "OldLace") {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+
+    getRoadAt(direction) {
+        if(!this.roads[direction])
+            return null;
+        return this.roads[direction];
+    }
+
+    addRoadAt(road, direction) {
+        if(this.roads[direction] != null){
+            console.warn(`There allready is a connection for direction: ${direction}`);
+        }else{
+            this.roads[direction] = road;
+        }
+    }
+
+
     width = 50;
     height = 50;
-    roads = [];
-    position = {x:0,y:0};
-
-    constructor(position, roadConnections) {
-        this.position = position;
-        this.roads = roadConnections;
-    }
-
-    getConnectionAt(direction) {
-        if(!roads[direction])
-            return null;
-
-        const connection = {
-            intersection: this,
-            direction: direction,
-            road: roads[direction]
-        }
-
-        return connection;
-    }
-
-    setConnectionAt(road, direction) {
-        if(roads[direction])
-            console.warn("There was already a connection: " + getConnectionAt(direction));
-        
-        roads[direction] = road;
-    }
-
     draw(ctx) {
-        ctx.fillStyle = "white";
-        ctx.fillRect(this.position.x, this.position.y, 
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, 
             this.width, this.height);
     }
 }
