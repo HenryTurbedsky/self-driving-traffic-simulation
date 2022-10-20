@@ -24,7 +24,7 @@ export class City {
     autoBuildRoad(interA, interB){
         var connectionA = {};
         var connectionB = {};
-
+        
         if(Math.abs(interA.x - interB.x) < Math.abs(interA.y - interB.y)){
             if(interA.y < interB.y){
                 connectionA = new Connection(interA, 2);
@@ -33,6 +33,20 @@ export class City {
                 connectionA = new Connection(interA, 0);
                 connectionB = new Connection(interB, 2);
             }
+            if(connectionA.valid == false){
+                if(interA.x < interB.x){
+                    connectionA = new Connection(interA, 1);
+                }else{
+                    connectionA = new Connection(interA, 3);
+                }
+            }
+            if(connectionB.valid == false){
+                if(interA.x < interB.x){
+                    connectionB = new Connection(interB, 3);
+                }else{
+                    connectionB = new Connection(interB, 1);
+                }
+            }
         }else{
             if(interA.x < interB.x){
                 connectionA = new Connection(interA, 1);
@@ -40,6 +54,20 @@ export class City {
             }else{
                 connectionA = new Connection(interA, 3);
                 connectionB = new Connection(interB, 1);
+            }
+            if(connectionA.valid == false){
+                if(interA.y < interB.y){
+                    connectionA = new Connection(interA, 2);
+                }else{
+                    connectionA = new Connection(interA, 0);
+                }
+            }
+            if(connectionB.valid == false){
+                if(interA.y < interB.y){
+                    connectionB = new Connection(interB, 0);
+                }else{
+                    connectionB = new Connection(interB, 2);
+                }
             }
         }
 

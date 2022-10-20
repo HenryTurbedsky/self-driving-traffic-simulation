@@ -16,7 +16,7 @@ const city = new City();
 
 const cross1 = city.buildIntersection(200,200);
 const cross2 = city.buildIntersection(400,200);
-const cross3 = city.buildIntersection(200,600);
+const cross3 = city.buildIntersection(300,300);
 
 city.autoBuildRoad(cross1, cross2);
 city.autoBuildRoad(cross1, cross3);
