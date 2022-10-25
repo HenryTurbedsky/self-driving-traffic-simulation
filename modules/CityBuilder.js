@@ -8,21 +8,6 @@ export class CityBuilder {
     constructor(city){
         this.city = city;
         this.input = new PlayerInput();
-        
-        // USES BIND
-        //this.input.subscribe(this.click.bind(this));
-        
-        // USES ARROW
-        // this.input.subscribe(event=>{
-        //     if(event.click)
-        //     {
-        //         if(event.button == 2)
-        //             this.city.buildIntersection(event.mouse.x, event.mouse.y, true);
-        //         if(event.button == 1){
-        //         }
-        //     }
-        // });
-
         this.input.subscribe(event => this.click(event));
     }
 
@@ -33,7 +18,7 @@ export class CityBuilder {
                 this.city.buildIntersection(event.mouse.x, event.mouse.y, true);
 
             if(event.button == 1){
-
+                console.log(this.city.getIntersectionAt(event.mouse.x, event.mouse.y))
             }
         }
     }

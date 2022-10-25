@@ -84,6 +84,19 @@ export class City {
         }
     }
 
+    getIntersectionAt(x, y){
+        let match = null;
+        let width = Intersection.width;
+        let height = Intersection.height;
+
+        this.intersections.forEach( inter => {
+            if(match) return;
+            if(Math.abs((inter.x + width/2) - x) < width/2 && Math.abs((inter.y + height/2) - y) < height/2)
+                match = inter;
+        });
+        return match;
+    }
+
     draw(ctx){
         this.roads.forEach(road => {
             road.draw(ctx);
