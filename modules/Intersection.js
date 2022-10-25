@@ -23,12 +23,12 @@ export class Intersection {
         }
     }
 
-
-    width = 50;
-    height = 50;
     draw(ctx) {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, 
-            this.width, this.height);
+            Intersection.width, Intersection.height);
     }
 }
+
+Intersection.width = 50;
+Intersection.height = 50;

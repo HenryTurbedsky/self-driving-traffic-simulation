@@ -9,8 +9,13 @@ export class City {
     constructor(){
     }
 
-    buildIntersection(x, y) {
-        const inter = new Intersection(x,y);
+    buildIntersection(x, y, center=false) {
+        let inter;
+        if(center)
+            inter = new Intersection(x-Intersection.width/2,y-Intersection.height/2);
+        else
+            inter = new Intersection(x,y);
+        
         this.intersections.push(inter);
         return inter;
     }
@@ -22,8 +27,8 @@ export class City {
     }
 
     autoBuildRoad(interA, interB){
-        var connectionA = {};
-        var connectionB = {};
+        let connectionA = {};
+        let connectionB = {};
         
         if(Math.abs(interA.x - interB.x) < Math.abs(interA.y - interB.y)){
             if(interA.y < interB.y){

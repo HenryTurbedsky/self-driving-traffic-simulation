@@ -1,3 +1,4 @@
+import { Intersection } from "./Intersection.js";
 export class Road {
     width = 20;
     connectionA = null;
@@ -21,12 +22,12 @@ export class Road {
             const pos = {x:inter.x, y:inter.y};
             const dir = con.direction;
 
-            pos.x += inter.width/2;
-            pos.y += inter.height/2;
-            if(dir == 0) pos.y -= inter.height/2;
-            else if(dir == 1) pos.x += inter.height/2;
-            else if (dir == 2) pos.y += inter.height/2;
-            else if(dir == 3) pos.x -= inter.height/2;
+            pos.x += Intersection.width/2;
+            pos.y += Intersection.height/2;
+            if(dir == 0) pos.y -= Intersection.height/2;
+            else if(dir == 1) pos.x += Intersection.height/2;
+            else if (dir == 2) pos.y += Intersection.height/2;
+            else if(dir == 3) pos.x -= Intersection.height/2;
 
             posPoints.push(pos);
         });
