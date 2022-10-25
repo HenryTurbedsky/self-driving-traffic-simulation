@@ -1,15 +1,13 @@
 import { City } from "./modules/City.js";
-import { PlayerInput } from "./modules/PlayerInput.js";
+import { CityBuilder } from "./modules/CityBuilder.js";
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-console.log(canvas);
-
-const player = new PlayerInput();
 
 const city = new City();
+const cityBuilder = new CityBuilder(city);
 
 const cross1 = city.buildIntersection(200,200);
 const cross2 = city.buildIntersection(400,200);
@@ -23,11 +21,6 @@ setInterval(function(){
     context.clearRect(0, 0, canvas.width, canvas.height)
     city.draw(context);
 }, 20);
-
-var doSomthingTest = function(input){
-    console.log(input);
-}
-player.subscribe(doSomthingTest);
 
 
 //Turns off right click context menu
