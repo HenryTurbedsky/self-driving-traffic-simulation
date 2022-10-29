@@ -18,8 +18,9 @@ city.autoBuildRoad(cross1, cross3);
 city.autoBuildRoad(cross2, cross3);
 
 setInterval(function(){
-    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.clearRect(0, 0, canvas.width, canvas.height);
     city.draw(context);
+    cityBuilder.draw(context);
 }, 20);
 
 
