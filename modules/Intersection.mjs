@@ -1,11 +1,20 @@
 export class Intersection {
-    x = 0;
-    y = 0;
     roads = [null, null, null, null]; //index 0 = up, index 1 = right, ...
+
+    bounds = {
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+    }
 
     constructor(x, y, color = "OldLace") {
         this.x = x;
         this.y = y;
+        this.bounds.x = x;
+        this.bounds.y = y;
+        this.bounds.height = Intersection.height;
+        this.bounds.width = Intersection.width
         this.color = color;
     }
 
@@ -25,7 +34,7 @@ export class Intersection {
 
     draw(ctx) {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, 
+        ctx.fillRect(this.x, this.y,
             Intersection.width, Intersection.height);
     }
 }

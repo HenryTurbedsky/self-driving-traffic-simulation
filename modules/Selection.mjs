@@ -12,9 +12,9 @@ export class Selection {
 
     constructor(object){
         this.selectedObj = object;
-        
+
         if(!object) return;
-        
+
         this.objectType = this.selectedObj?.constructor.name;
         this.active = true;
 
@@ -26,11 +26,11 @@ export class Selection {
 
     checkIfClicked(x, y){
         if(Math.abs((this.x + this.width/2) - x) < this.width/2 && Math.abs((this.y + this.height/2) - y) < this.height/2) {
-            // Check if any of the buttons where clicked. 
-            // At the momment buttons only work if the are within the selection box.
-            for(let i = 0; i < this.buttons.length; i++){
+            // Check if any of the buttons where clicked.
+            // buttons only work if they are within the selection box.
+            for (let i = 0; i < this.buttons.length; i++) {
                 let isClicked = this.buttons[i].checkIfClicked(x, y);
-                if(isClicked) return isClicked;
+                if (isClicked) return isClicked;
             }
             // If not buttons where clicked then it clicked the base selection.
             return this.clicked();
@@ -44,7 +44,7 @@ export class Selection {
     draw(ctx){
         if(this.active) ctx.fillStyle = "rgba(0, 0, 255, 0.3)";
         else ctx.fillStyle = "rgba(255, 0, 0, 0.3)";
-        
+
         ctx.fillRect(this.x, this.y, this.width, this.height);
 
         this.buttons.forEach(button => {

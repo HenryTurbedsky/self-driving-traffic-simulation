@@ -6,18 +6,18 @@ export class PlayerInput {
 
     observers = [];
 
-    constructor(){;
+    constructor() {
         onmousemove = (event) => {
             this.mouse.x = event.clientX;
             this.mouse.y = event.clientY;
             this.update();
         };
-        onmousedown = (event) => { 
+        onmousedown = (event) => {
             this.mouseDown = true;
             this.button = event.buttons;
             this.click = true;
             this.update();
-        }; 
+        };
         onmouseup = (event) => {
             this.mouseDown = false;
             this.button = event.buttons;
