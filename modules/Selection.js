@@ -1,5 +1,3 @@
-import { Intersection } from "./Intersection.js";
-
 export class Selection {
     selectedObj = null;
     objectType = null;
@@ -22,48 +20,32 @@ export class Selection {
 
         this.x = object.x;
         this.y = object.y;
-
-        if(this.objectType == "Intersection"){
-            this.width = Intersection.width;
-            this.height = Intersection.height;
-
-            const x = this.x;
-            const y = this.y;
-            
-            if(!object.roads[0])
-                this.buttons.push(new SelectionButton(x+this.width/4, y, this.width/2, this.height/4));
-            if(!object.roads[1])
-                this.buttons.push(new SelectionButton(x+this.width*3/4, y+this.height/4, this.width/4, this.height/2));
-            if(!object.roads[2])
-                this.buttons.push(new SelectionButton(x+this.width/4, y+this.height*3/4, this.width/2, this.height/4));
-            if(!object.roads[3])
-                this.buttons.push(new SelectionButton(x, y+this.height/4, this.width/4, this.height/2));
-        }
+        this.width = 200;
+        this.height = 200;
     }
 
     checkIfClicked(x, y){
         if(Math.abs((this.x + this.width/2) - x) < this.width/2 && Math.abs((this.y + this.height/2) - y) < this.height/2) {
+            // Check if any of the buttons where clicked. 
+            // At the momment buttons only work if the are within the selection box.
             for(let i = 0; i < this.buttons.length; i++){
                 let isClicked = this.buttons[i].checkIfClicked(x, y);
                 if(isClicked) return isClicked;
             }
+            // If not buttons where clicked then it clicked the base selection.
             return this.clicked();
         }
         return false;
     }
     clicked(){
-        console.log("Selection was clicked");
         return true;
     }
 
     draw(ctx){
-        const x = this.x;
-        const y = this.y;
-
         if(this.active) ctx.fillStyle = "rgba(0, 0, 255, 0.3)";
-        else ctx.fillStyle = "rgba(255, 0, 0, 0.3)"
-
-        ctx.fillRect(x, y, this.width, this.height);
+        else ctx.fillStyle = "rgba(255, 0, 0, 0.3)";
+        
+        ctx.fillRect(this.x, this.y, this.width, this.height);
 
         this.buttons.forEach(button => {
             button.draw(ctx);
@@ -72,7 +54,7 @@ export class Selection {
 }
 
 
-class SelectionButton {
+export class SelectionButton {
     x = 0;
     y = 0;
     width = 0;
